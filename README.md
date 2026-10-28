@@ -23,14 +23,16 @@ Then install Hangar with one command:
 brew install learnandland/tap/hangar
 ```
 
-Homebrew adds this tap on the way, downloads the notarized app, checks it and copies
-`Hangar.app` to `/Applications`. Open Hangar (Launchpad, or `open -a Hangar`) and pair it
-from the Learn and Land website.
+Homebrew adds this tap on the way, trusts the cask you named, downloads the notarized app,
+checks it and copies `Hangar.app` to `/Applications`. Open Hangar (Launchpad, or
+`open -a Hangar`) and pair it from the Learn and Land website.
 
-Or in two steps, if you prefer the short name afterwards:
+Or in steps, if you prefer the short name afterwards. Homebrew 7 loads casks from a
+non-official tap only once you trust it, so the short name needs `brew trust` first:
 
 ```sh
 brew tap learnandland/tap
+brew trust learnandland/tap
 brew install hangar
 ```
 
