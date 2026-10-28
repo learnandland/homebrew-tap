@@ -32,7 +32,7 @@ non-official tap only once you trust it, so the short name needs `brew trust` fi
 
 ```sh
 brew tap learnandland/tap
-brew trust learnandland/tap
+brew trust --cask learnandland/tap/hangar
 brew install hangar
 ```
 
