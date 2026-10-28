@@ -1,15 +1,65 @@
 # Learn and Land Homebrew tap
 
-Hangar runs Learn and Land practice notebooks on your own Mac (Apple Silicon, macOS 15
-or later). Once its first production release is out:
+Hangar runs Learn and Land practice notebooks on your own Mac. It needs a Mac with Apple
+Silicon (M1 or later) and macOS 15 or later.
+
+> **Not available yet.** The cask arrives with Hangar's first production release. Until
+> then this tap is empty, `brew install` reports "No available cask", and Hangar is
+> available to internal testers only.
+
+## Install
+
+If you don't have Homebrew yet, install it first (the official installer from
+[brew.sh](https://brew.sh)), then run the two lines it prints at the end to add `brew` to
+your shell:
 
 ```sh
-brew install --cask learnandland/tap/hangar
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 ```
 
-Until then this tap has no cask, and Hangar is available to internal testers only.
+Then install Hangar with one command:
 
-`Casks/hangar.rb` is written by the **Publish Hangar (macOS)** workflow in
-`learnandland-org/learnandland` (from `hangar/packaging/macos/hangar.rb.template`) each
-time a tagged `hangar-v*` build is published to the production channel. Don't edit it by
-hand: change the template instead.
+```sh
+brew install learnandland/tap/hangar
+```
+
+Homebrew adds this tap on the way, downloads the notarized app, checks it and copies
+`Hangar.app` to `/Applications`. Open Hangar (Launchpad, or `open -a Hangar`) and pair it
+from the Learn and Land website.
+
+Or in two steps, if you prefer the short name afterwards:
+
+```sh
+brew tap learnandland/tap
+brew install hangar
+```
+
+`brew install learnandland/hangar` doesn't work: Homebrew reads a two-part name as a tap.
+
+## Update
+
+Nothing to do: Hangar updates itself. `brew upgrade` leaves it alone (`brew upgrade --greedy
+hangar` only brings Homebrew's record up to date).
+
+## Uninstall
+
+The cleanest way is Hangar's own **☰ → Uninstall**: it also unpairs this Mac from your
+account. With Homebrew:
+
+| Command | Removes |
+|---|---|
+| `brew uninstall hangar` | The app only; your data and pairing stay |
+| `brew uninstall --zap hangar` | The app, its data folder, caches, settings and its key in your keychain |
+
+After `--zap`, the Mac stays listed under your devices on the website until you remove it
+there.
+
+To remove the tap too: `brew untap learnandland/tap`.
+
+## For maintainers
+
+`Casks/hangar.rb` is written by the **Promote Hangar to production (macOS)** workflow
+(`release-hangar-macos-promote.yml` in `learnandland-org/learnandland`), from
+`hangar/packaging/macos/hangar.rb.template`, each time a stage build is promoted to
+production. It needs the `HANGAR_TAP_TOKEN` secret in that repo's `production`
+environment. Don't edit the cask here: change the template instead.
