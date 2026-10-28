@@ -61,5 +61,6 @@ To remove the tap too: `brew untap learnandland/tap`.
 `Casks/hangar.rb` is written by the **Promote Hangar to production (macOS)** workflow
 (`release-hangar-macos-promote.yml` in `learnandland-org/learnandland`), from
 `hangar/packaging/macos/hangar.rb.template`, each time a stage build is promoted to
-production. It needs the `HANGAR_TAP_TOKEN` secret in that repo's `production`
-environment. Don't edit the cask here: change the template instead.
+production. It pushes with a write deploy key on this repo (Settings → Deploy keys), whose
+private half is the `HANGAR_TAP_DEPLOY_KEY` secret in that repo's `production` environment.
+Don't edit the cask here: change the template instead.
